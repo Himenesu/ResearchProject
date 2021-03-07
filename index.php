@@ -108,7 +108,7 @@ require_once("./database/connect.php"); //calling the connect.php
                                 <?php echo $errorcpass; ?>
                     
                                 <hr class="mb-3">
-                                <input class="btn btn-primary" type="submit" name="btn" value="register">
+                                <input class="btn btn-primary" type="submit" id = "register1" name="btn" value="register">
                             </div>
                         </div>
                     </div>
@@ -119,12 +119,14 @@ require_once("./database/connect.php"); //calling the connect.php
         <script src = "//cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <script type = "text/javascript">
         $(function(){
-            //alert('hello.');
-            swal.fire({
+            $('#register1').check(fucntion(){
+                swal.fire({
                 'title':'Successfully Registered!',
                 'text' :'Click here to continue',
                 'type' : 'success'
             })
+            });
+            //alert('hello.');
         });
         </script>
     </body>
