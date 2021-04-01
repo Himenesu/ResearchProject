@@ -1,23 +1,24 @@
 <?php
 require_once("./database/connect.php"); //calling the connect.php
-    $firstname = $lastname = $email = $contact = $pass = $cpass = "";
-    $errorfirstname = $errorlastname = $erroremail = $errorcontact = $errorpass = $errorcpass = "";
+    $username = $email = $pass = $cpass = "";
+    $errorusername =  $erroremail = $errorpass = $errorcpass = "";
 
  if(isset($_POST["btn"])){
      $error = 0;
 
-     if(!is_numeric($_POST["contact"])){
-         $error++;
-         $errorcontact = "Please input numerical characters only!";
-     }
+    //  if(!is_numeric($_POST["contact"])){
+    //      $error++;
+    //      $errorcontact = "Please input numerical characters only!";
+    //  }
 
      //form validation - number and null value
 
      if($error == 0){
-         $firstname = $_POST["firstname"];
-         $lastname  = $_POST["lastname"];
+         $username = $_POST["username"];
+        //  $firstname = $_POST["firstname"];
+        //  $lastname  = $_POST["lastname"];
          $email     = $_POST["email"];
-         $contact   = $_POST["contact"];
+         //$contact   = $_POST["contact"];
          $pass      = $_POST["pass"];
          $cpass     = $_POST["cpass"];
 
@@ -29,7 +30,7 @@ require_once("./database/connect.php"); //calling the connect.php
         //  echo $cpass . "<br>";
 
         //inserting the data in the database
-        $sql = "INSERT INTO datatable(firstname, lastname, email, contact, pass, cpass) VALUES ('$firstname','$lastname','$email','$contact','$pass','$cpass')";
+        $sql = "INSERT INTO usersdata(username, email, pass, cpass) VALUES ('$username','$email','$pass','$cpass')";
         if(mysqli_query($connect, $sql)){
        
             echo "<script language='javascript'>alert('New record has been inserted!')</script>";
@@ -48,86 +49,114 @@ require_once("./database/connect.php"); //calling the connect.php
 
 ?>
 
-
-
-
 <!DOCTYPE html>
-<html>
-<head>
-    <title> iRegister </title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+    <head>
 
-</head>   
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            <script
+                src="https://kit.fontawesome.com/64d58efce2.js"
+                crossorigin="anonymous"
+            ></script>
+
+                <link rel="stylesheet" href="statics/style.css" />
+                    <title> iRegister </title>
+    </head>   
     <body>
-        <center>
-            <div>
-                <?php
-                    if(isset($_POST['btn'])){
-                        $firstname  = $_POST['firstname'];
-                        $lastname   = $_POST['lastname'];
-                        $email      = $_POST['email'];
-                        $contact    = $_POST['contact'];
-                        $pass       = $_POST['pass'];
-                        $cpass      = $_POST['cpass'];
+        <div>
+            <?php
+                if(isset($_POST['btn'])){
+                    $username   = $_POST["username"];
+                    // $firstname  = $_POST['firstname'];
+                    // $lastname   = $_POST['lastname'];
+                    $email      = $_POST['email'];
+                    //$contact    = $_POST['contact'];
+                    $pass       = $_POST['pass'];
+                    $cpass      = $_POST['cpass'];
 
-                        // echo $firstname . " " . $lastname . " " . $email. " " . $contact . " " . $pass . " " . $cpass;
-                    }
-                ?>
-            </div>
-            <div>
-                <form method = "POST" action = "<?php htmlspecialchars("PHP_SELF"); ?>">
-                    <div class="container"> 
-                        <div clas="row">
-                            <div class="col-sm-3">
-                                <h1> Registration</h1>
-                                <p> Fill up the form with correct values </p>
-                                <hr class="mb-3">
-                                <label for="firstname"><b>First Name</b></label>
-                                <input class="form-control" type="text" name="firstname" required>
-                                <?php echo $errorfirstname; ?>
-                    
-                                <label for="lastname"><b>Last Name</b></label>
-                                <input class="form-control" type="text" name="lastname" required>
-                                <?php echo $errorlastname; ?>
-                    
-                                <label for="email"><b>Email Address</b></label>
-                                <input class="form-control" type="email" name="email" required>
-                                <?php echo $erroremail; ?>
-                    
-                                <label for="contact"><b>Phone Number</b></label>
-                                <input class="form-control" type="text" name="contact" required>
-                                <?php echo $errorcontact; ?>
-                    
-                                <label for="pass"><b>Password</b></label>
-                                <input class="form-control" type="password" name="pass" required>
-                                <?php echo $errorpass; ?>
-                    
-                                <label for="cpass"><b>Confirm Password</b></label>
-                                <input class="form-control" type="password" name="cpass" required>
-                                <?php echo $errorcpass; ?>
-                    
-                                <hr class="mb-3">
-                                <input class="btn btn-primary" type="submit" id = "register1" name="btn" value="register">
-                            </div>
+                    // echo $firstname . " " . $lastname . " " . $email. " " . $contact . " " . $pass . " " . $cpass;
+                }
+            ?>
+        </div>
+
+            <div class="container">
+                    <div class="forms-container">
+                        <div class="signin-signup">
+
+                            <form action="#" class="sign-in-form">
+                                <h2 class="title">Sign in</h2>
+                                    <div class="input-field">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" placeholder="Username" />
+                                    </div>
+                                    <div class="input-field">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" placeholder="Password" name="pass" />
+                                    </div>
+                                    <input type="submit" value="Login" class="btn solid" />
+                            </form>
+
+                            <form method= "post" action= "<?php $_PHP_SELF?>" class="sign-up-form">
+                        
+                                        <h1> Sign Up </h1>
+                                        <hr class="mb-3">
+                                        <div class="input-field">
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" name="username" value="<?php echo $username; ?>" placeholder="Username" required />
+                                            <?php echo $errorusername; ?>
+                                        </div>
+                                        <div class="input-field">
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" name="email" value="<?php echo $email; ?>" placeholder="Email" required />
+                                            <?php echo $erroremail; ?>
+                                        </div>
+                                        <div class="input-field">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="password" name="pass" placeholder="Password" required />
+                                            <?php echo $errorpass; ?>
+                                        </div>
+                                        <div class="input-field">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="password" name="cpass" placeholder="Confirm Password" required />
+                                            <?php echo $errorcpass; ?>
+                                        </div>
+                                        <hr class="mb-3">
+                                        <input class="btn btn-primary" type="submit" name="btn" class="btn" id = "register1" value="Sign Up" />
+
+                            </form>
                         </div>
+                    </div>    
+                <div class="panels-container">
+                    <div class="panel left-panel">
+                        <div class="content">
+                            <h3>Doesn't have an account yet ?</h3>
+                            <p>
+                                Click here to Sign Up!
+                            </p>
+                                <button class="btn transparent" id="sign-up-btn">
+                                    Sign up
+                                </button>
+                        </div>
+                            <img src="img/log.svg" class="image"/>
                     </div>
-                </form>
+                    <div class="panel right-panel">
+                        <div class="content">
+                                <h3>Has an account already ?</h3>
+                                <p>
+                                    Click here to Sign In.
+                                </p>
+                                <button class="btn transparent" id="sign-in-btn">
+                                    Sign in
+                                </button>
+                        </div>
+                            <img src="img/register.svg" class="image"/>
+                    </div>
+                </div>
             </div>
-        </center>
-        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src = "//cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <script type = "text/javascript">
-        $(function(){
-            $('#register1').check(fucntion(){
-                swal.fire({
-                'title':'Successfully Registered!',
-                'text' :'Click here to continue',
-                'type' : 'success'
-            })
-            });
-            //alert('hello.');
-        });
-        </script>
+            
+      <script src="statics/app.js"></script>
     </body>
 </html>
+

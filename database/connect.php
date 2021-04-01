@@ -7,12 +7,13 @@ $connect = mysqli_connect(DBSERVER, DBUSERNAME, "") or die ("Cannot connect to t
 
 $mydatabase = mysqli_query($connect, "CREATE DATABASE IF NOT EXISTS `registrationdata` ");
 $mydatabase = mysqli_query($connect, "
-                    CREATE TABLE IF NOT EXISTS `registrationdata` . `datatable` (
+                    CREATE TABLE IF NOT EXISTS `registrationdata` . `usersdata` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `username` varchar(10) NOT NULL,
                         `firstname` varchar(20) NOT NULL,
                         `lastname` varchar(20) NOT NULL,
                         `email` varchar(30) NOT NULL,
-                        `contact` varchar(15) NOT NULL,
+                        `contact` int(11) NOT NULL,
                         `pass` varchar(15) NOT NULL,
                         `cpass` varchar(15) NOT NULL,
                         PRIMARY KEY(`id`)
