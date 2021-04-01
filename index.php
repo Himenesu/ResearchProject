@@ -33,7 +33,7 @@ require_once("./database/connect.php"); //calling the connect.php
         $sql = "INSERT INTO usersdata(username, email, pass, cpass) VALUES ('$username','$email','$pass','$cpass')";
         if(mysqli_query($connect, $sql)){
        
-            echo "<script language='javascript'>alert('New record has been inserted!')</script>";
+            echo "<script language='javascript'>alert('Successfully Registered! Click ok to Sign In.')</script>";
             echo "<script>window.location.href='index.php';</script>";
        
         }
@@ -68,7 +68,7 @@ require_once("./database/connect.php"); //calling the connect.php
         <div>
             <?php
                 if(isset($_POST['btn'])){
-                    $username   = $_POST["username"];
+                    $username   = $_POST['username'];
                     // $firstname  = $_POST['firstname'];
                     // $lastname   = $_POST['lastname'];
                     $email      = $_POST['email'];
@@ -85,17 +85,17 @@ require_once("./database/connect.php"); //calling the connect.php
                     <div class="forms-container">
                         <div class="signin-signup">
 
-                            <form action="#" class="sign-in-form">
+                            <form action="secondpage.php" class="sign-in-form">
                                 <h2 class="title">Sign in</h2>
                                     <div class="input-field">
                                         <i class="fas fa-user"></i>
-                                        <input type="text" placeholder="Username" />
+                                        <input type="text" placeholder="Username" required/>
                                     </div>
                                     <div class="input-field">
                                         <i class="fas fa-lock"></i>
-                                        <input type="password" placeholder="Password" name="pass" />
+                                        <input type="password" placeholder="Password" name="pass" required/>
                                     </div>
-                                    <input type="submit" value="Login" class="btn solid" />
+                                    <input type="submit" value="Login" name="btn2" class="btn solid" />
                             </form>
 
                             <form method= "post" action= "<?php $_PHP_SELF?>" class="sign-up-form">
