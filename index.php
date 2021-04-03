@@ -30,7 +30,7 @@ require_once("./database/connect.php"); //calling the connect.php
         //  echo $cpass . "<br>";
 
         //inserting the data in the database
-        $sql = "INSERT INTO usersdata(username, email, pass, cpass) VALUES ('$username','$email','$pass','$cpass')";
+        $sql = "INSERT INTO users_personal_data(username, email, pass, cpass) VALUES ('$username','$email','$pass','$cpass')";
         if(mysqli_query($connect, $sql)){
        
             echo "<script language='javascript'>alert('Successfully Registered! Click ok to Sign In.')</script>";
@@ -61,7 +61,7 @@ require_once("./database/connect.php"); //calling the connect.php
                 crossorigin="anonymous"
             ></script>
 
-                <link rel="stylesheet" href="statics/style.css" />
+                <link rel="stylesheet" href="css/style.css" />
                     <title> iRegister </title>
     </head>   
     <body>
