@@ -1,7 +1,7 @@
 <?php
 require_once("./database/connect.php"); //calling the connect.php
-    $username = $email = $pass = $cpass = "";
-    $errorusername =  $erroremail = $errorpass = $errorcpass = "";
+    $username = $email = $pass = "";
+    $errorusername =  $erroremail = $errorpass = "";
 
  if(isset($_POST["btn"])){
      $error = 0;
@@ -20,17 +20,17 @@ require_once("./database/connect.php"); //calling the connect.php
          $email     = $_POST["email"];
          //$contact   = $_POST["contact"];
          $pass      = $_POST["pass"];
-         $cpass     = $_POST["cpass"];
+         
 
         //  echo $firstname . "<br>";
         //  echo $lastname . "<br>";
         //  echo $email . "<br>";
         //  echo $contact . "<br>";
         //  echo $pass . "<br>";
-        //  echo $cpass . "<br>";
+        
 
         //inserting the data in the database
-        $sql = "INSERT INTO users_personal_data(username, email, pass, cpass) VALUES ('$username','$email','$pass','$cpass')";
+        $sql = "INSERT INTO users_personal_data(username, email, pass) VALUES ('$username','$email','$pass')";
         if(mysqli_query($connect, $sql)){
        
             echo "<script language='javascript'>alert('Successfully Registered! Click ok to Sign In.')</script>";
@@ -61,7 +61,7 @@ require_once("./database/connect.php"); //calling the connect.php
                 crossorigin="anonymous"
             ></script>
 
-                <link rel="stylesheet" href="css/style.css" />
+                <link rel="stylesheet" href="statics/style.css" />
                     <title> iRegister </title>
     </head>   
     <body>
@@ -74,9 +74,9 @@ require_once("./database/connect.php"); //calling the connect.php
                     $email      = $_POST['email'];
                     //$contact    = $_POST['contact'];
                     $pass       = $_POST['pass'];
-                    $cpass      = $_POST['cpass'];
+                    
 
-                    // echo $firstname . " " . $lastname . " " . $email. " " . $contact . " " . $pass . " " . $cpass;
+                    // echo $firstname . " " . $lastname . " " . $email. " " . $contact . " " . $pass;
                 }
             ?>
         </div>
@@ -105,22 +105,17 @@ require_once("./database/connect.php"); //calling the connect.php
                                         <div class="input-field">
                                             <i class="fas fa-user"></i>
                                             <input type="text" name="username" value="<?php echo $username; ?>" placeholder="Username" required />
-                                            <?php echo $errorusername; ?>
+                                        
                                         </div>
                                         <div class="input-field">
                                             <i class="fas fa-envelope"></i>
                                             <input type="email" name="email" value="<?php echo $email; ?>" placeholder="Email" required />
-                                            <?php echo $erroremail; ?>
+                                        
                                         </div>
                                         <div class="input-field">
                                             <i class="fas fa-lock"></i>
                                             <input type="password" name="pass" placeholder="Password" required />
-                                            <?php echo $errorpass; ?>
-                                        </div>
-                                        <div class="input-field">
-                                            <i class="fas fa-lock"></i>
-                                            <input type="password" name="cpass" placeholder="Confirm Password" required />
-                                            <?php echo $errorcpass; ?>
+                                        
                                         </div>
                                         <hr class="mb-3">
                                         <input class="btn btn-primary" type="submit" name="btn" class="btn" id = "register1" value="Sign Up" />
